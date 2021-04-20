@@ -1,0 +1,34 @@
+{
+  "name": "perfanalytics-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --forceExit",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erbilnas/perfanalytics-api.git"
+  },
+  "author": "Erbil Nas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erbilnas/perfanalytics-api/issues"
+  },
+  "homepage": "https://github.com/erbilnas/perfanalytics-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.3"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
