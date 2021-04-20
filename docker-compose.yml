@@ -1,0 +1,42 @@
+version: "3"
+services:
+  # Setup DB container
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  # Setup server container
+  server:
+    container_name: server
+    restart: always
+    build: ./server
+    expose:
+      - ${APP_SERVER_PORT}
+    environment:
+      APP_SERVER_PORT: ${APP_SERVER_PORT}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    volumes:
+      - ./server/api:/srv/app/perfanalytics-server/api
+    command: npm run start
+
+  # Setup client container
+  client:
+    container_name: client
+    build: ./client
+    environment:
+      REACT_APP_PORT: ${REACT_APP_PORT}
+    expose:
+      - ${REACT_APP_PORT}
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    volumes:
+      - ./client/src:/srv/app/perfanalytics-client/src
+      - ./client/public:/srv/app/perfanalytics-client/public
+    links:
+      - server
+    command: npm run start
