@@ -4,12 +4,12 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import { ChartLabel } from '../../styles/'
 
 const Chart = (props) => {
-    const { data, label } = props
+    const { data, label, width, height, margin } = props
 
     return (
         <>
             <ChartLabel>{label}</ChartLabel>
-            <LineChart width={350} height={300} margin={{ top: 5, right: 5, bottom: 55, left: 25 }} data={data}>
+            <LineChart width={width} height={height} margin={margin} data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />
@@ -25,8 +25,11 @@ const Chart = (props) => {
 }
 
 Chart.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.object || PropTypes.array,
     label: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    margin: PropTypes.object,
 }
 
 export default Chart

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { DatetimePickerContainer, ChartContainer, LoaderSpan } from '../../styles'
-import { Space } from 'antd'
+import { Space, Layout } from 'antd'
 import Chart from '../../components/chart'
 import DatetimePicker from '../../components/datetimepicker'
 import NoData from '../../components/nodata'
@@ -14,6 +14,8 @@ const Dashboard = () => {
     const [measures, setMeasures] = useState(null)
     const [loader, setLoader] = useState(false)
 
+    const chartMargin = { top: 5, right: 5, bottom: 55, left: 25 }
+
     useEffect(() => {
         if (date.endDate) {
             getMeasures(date.startDate, date.endDate).then((measure) => {
@@ -23,7 +25,7 @@ const Dashboard = () => {
         }
     }, [date.endDate])
 
-    const datetimeHandler = useCallback((dates, datesAsString, info) => {
+    const datetimeHandler = useCallback((dates, datesAsString, info) => { // A handler function to get dates from component
         if (info.range === 'end' && dates !== null) {
             let startDate = moment(dates[0]).valueOf()
             let endDate = moment(dates[1]).valueOf()
@@ -43,12 +45,17 @@ const Dashboard = () => {
             ? (
                 measures.length !== 0
                     ? (
+                        // In here, I chose to group measures by URLs, because the charts should be created
+                        // according to individual URLs. Must be refactored in the near future.
                         Object.keys(Object.keys(_.groupBy(measures, 'url'))).map(index => {
                             return (
                                 <Chart
                                     key={index}
                                     label={Object.keys(_.groupBy(measures, 'url'))[index]}
                                     data={Object.values(_.groupBy(measures, 'url'))[index]}
+                                    width={350}
+                                    height={350}
+                                    margin={chartMargin}
                                 />
                             )
                         })
@@ -81,9 +88,11 @@ const Dashboard = () => {
                 {showLoader}
             </DatetimePickerContainer>
             <ChartContainer>
-                <Space wrap>
-                    {showCharts}
-                </Space>
+                <Layout>
+                    <Space wrap>
+                        {showCharts}
+                    </Space>
+                </Layout>
             </ChartContainer>
         </>
     )

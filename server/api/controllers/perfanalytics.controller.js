@@ -1,6 +1,12 @@
 const PerfanalyticsModel = require('../models/perfanalytics.model')
 const moment = require('moment')
 
+exports.welcomeMessage = (req, res) => {
+    return res.status(200).send({
+        message: "Welcome to the Perfanalytics API. Created by Erbil Nas."
+    })
+}
+
 exports.getMetricsFromLib = (req, res) => {
     let data = req.body
 

@@ -1,6 +1,6 @@
 version: "3"
 services:
-  # Setup DB container
+  # Setup database container
   mongo:
     container_name: mongo
     image: mongo
@@ -8,7 +8,8 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-      - "27017:27017"
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+
   # Setup server container
   server:
     container_name: server

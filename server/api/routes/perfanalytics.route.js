@@ -3,4 +3,5 @@ module.exports = (app) => {
 
     app.post('/metrics', perfanalyticsController.getMetricsFromLib)
     app.get('/measures', perfanalyticsController.sendMeasures)
+    app.get('/', perfanalyticsController.welcomeMessage)
 }

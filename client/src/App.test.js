@@ -42,7 +42,7 @@ describe('Get styles', () => {
 
     expect(containers).toHaveStyleRule('position', 'absolute')
     expect(datetimePickerLabel).toHaveStyleRule('margin', '0 0 10px 10px')
-    expect(chartLabel).toHaveStyleRule('margin', '0 0 0 45%')
+    expect(chartLabel).toHaveStyleRule('display', 'flex')
     expect(loaderSpan).toHaveStyleRule('margin', '0 0 0 15px')
   })
 })
