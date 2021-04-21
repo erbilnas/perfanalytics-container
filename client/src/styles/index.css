@@ -1,0 +1,11 @@
+@media screen and (max-width: 528px) {
+  .ant-picker-panel-container {
+    width: 58% !important;
+    overflow: auto !important;
+    margin-left: 30px !important;
+  }
+}
+
+.ant-layout {
+  background-color: white !important;
+}
