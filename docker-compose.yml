@@ -7,6 +7,8 @@ services:
     restart: always
     volumes:
       - ./data:/data/db
+    environment:
+      MONGODB_PORT: ${MONGODB_PORT}
     ports:
       - ${MONGODB_PORT}:${MONGODB_PORT}
 
@@ -15,10 +17,10 @@ services:
     container_name: server
     restart: always
     build: ./server
-    expose:
-      - ${APP_SERVER_PORT}
     environment:
       APP_SERVER_PORT: ${APP_SERVER_PORT}
+    expose:
+      - ${APP_SERVER_PORT}
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
